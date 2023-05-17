@@ -1,14 +1,14 @@
 #Niki Decker
-#CIS 261
+#CIS261
 #Course Project Part 3
-
+  
 from datetime import datetime
-import os
 
+# write the line of code to assign Employees.txt to the variable FILENAME (Hint: see week 6, lab 2 as a guide)
 FILENAME = "Employees.txt"
 
 def GetEmpName():
-    empname = input("Enter employee name: ")
+    empname = input("Enter employee name or End to quit: ")
     return empname
 def GetDatesWorked():
     while True:
@@ -20,7 +20,7 @@ def GetDatesWorked():
             print()
             continue  # skip next if statement and re-start loop
         break
-
+    ######## write the lines of code to enter the to date
     while True:
         date_str = input("Enter to date (YYYY-MM-DD): ")
         try:
@@ -28,9 +28,11 @@ def GetDatesWorked():
         except ValueError:
             print("Invalid date format. Try again.")
             print()
+            continue
         if todate <= fromdate:
             print("To date must be after from date. Try again.")
             print()
+            continue
         else:
             break    
     return fromdate, todate
@@ -56,18 +58,31 @@ def printinfo(DetailsPrinted):
     TotGrossPay = 0.00
     TotTax = 0.00
     TotNetPay = 0.00
+#****************************************************************************************************************************
+    # write the line of code that will open the file in read mode and assign it to EmpFile (Hint: see week 6, lab 2 as a guide)
+    EmpFile = open(FILENAME)
 
-#with open('Employees.txt', 'r') as EmpFile:
-
-with open('Employees.txt', 'r') as EmpFile:
     while True:
-        DetailsPrinted = False  # initialize DetailsPrinted to False
+        rundate = input ("Enter start date for report (YYYY-MM-DD) or All for all data in file: ")
+        if (rundate.upper() == "ALL"):
+            break
+        try:
+            rundate = datetime.strptime(rundate, "%Y-%m-%d")
+            break
+        except ValueError:
+            print("Invalid date format. Try again.")
+            print()
+            continue  # skip next if statement and re-start loop
+    while True:
         EmpDetail = EmpFile.readline()
+        # write the if statemment that will break out of the while loop when no data is left in the file
         if not EmpDetail:
             break
-        EmpDetail = EmpDetail.strip() # remove the carriage return from EmpDetail
+        # write the line of code that will remove the carriage return from EmpDetail
+        EmpDetail.replace('\n','')
+        # the following code that will split EmpDetail on the pipe delimiter and assign to the list EmpList
         EmpList = EmpDetail.split("|")
-            
+#****************************************************************************************************************************
         fromdate = EmpList[0]
         if (str(rundate).upper() != "ALL"):
             checkdate = datetime.strptime(fromdate, "%Y-%m-%d")
@@ -105,7 +120,6 @@ with open('Employees.txt', 'r') as EmpFile:
     else:
         print("No detail information to print")
 
-
 def PrintTotals(EmpTotals):    
     print()
     print(f'Total Number Of Employees: {EmpTotals["TotEmp"]}')
@@ -114,10 +128,11 @@ def PrintTotals(EmpTotals):
     print(f'Total Income Tax:  {EmpTotals["TotTax"]:,.2f}')
     print(f'Total Net Pay: {EmpTotals["TotNetPay"]:,.2f}')
     
+#***************************************************************************************************************************************
 if __name__ == "__main__":
-    FILENAME = "Employees.txt"
-    with open(FILENAME, 'a') as EmpFile:  # open the file in append mode
-        #EmpDetailList = []
+        # write the line of code that will open the file in append mode and assign it to EmpFile (Hint: see week 6, lab 2 as a guide)
+        #open(FILENAME, 'a') as EmpFile
+        EmpFile = open(FILENAME, 'a')
         EmpTotals = {}
         DetailsPrinted = False
         while True:
@@ -130,14 +145,13 @@ if __name__ == "__main__":
             taxrate = GetTaxRate()
             fromdate = fromdate.strftime('%Y-%m-%d')
             todate = todate.strftime('%Y-%m-%d')
-            
-            # create a pipe delimited string of fromdate, todate, empname, hours, hourlyrate and taxrate with a carriage return at the end
-            EmpDetail = f"{fromdate}|{todate}|{empname}|{hours}|{hourlyrate}|{taxrate}\n"
-            
-            # write EmpDetail to the file
+            # write the line of code that will assign to EmpDetail a pipe delimited string of fromdate, todate, empname, hours, hourlyrate and taxrate and a carriage return at the end
+            EmpDetail = f'{fromdate}|{todate}|{empname}|{hours}|{hourlyrate}|{taxrate}\n'
+            # write the line of code that will write EmpDetail to the file
             EmpFile.write(EmpDetail)
-            
         # close file to save data
+        # write the line of code that will close the file
         EmpFile.close()
-        
         printinfo(DetailsPrinted)
+
+#***********************************************************************************************************************************************

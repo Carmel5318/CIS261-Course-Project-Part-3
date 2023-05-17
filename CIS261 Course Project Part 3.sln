@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CIS261 Course Project Part 3", "CIS261 Course Project Part 3.pyproj", "{19B3882C-5A1A-44F5-AF47-B7FE9A657670}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CIS261 Course Project part 3", "CIS261 Course Project part 3.pyproj", "{9DAC9DF4-3DAA-41DF-820A-82002E66078F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{19B3882C-5A1A-44F5-AF47-B7FE9A657670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19B3882C-5A1A-44F5-AF47-B7FE9A657670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DAC9DF4-3DAA-41DF-820A-82002E66078F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DAC9DF4-3DAA-41DF-820A-82002E66078F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {890B2E6A-BCB9-47C4-9EB0-B95E662DE961}
+		SolutionGuid = {8162565F-5FE6-4495-BFA1-1B49D28CF406}
 	EndGlobalSection
 EndGlobal
